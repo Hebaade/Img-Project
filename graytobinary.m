@@ -1,18 +1,16 @@
-function [bw] = graytobinary (I,threshold)
-[ w h ] = size(I);
-for i=1:w
-    for j=1:h
-        if(I(i,j) < threshold );
-            bw(i,j) = 0;
-        else if (I(i,j) >= threshold);
-            bw(i,j) = 1;
+function bw = graytobinary(I,th)
+    [w, h] = size(I);
+    bw = zeros(w, h);
+
+    for i = 1:w
+        for j = 1:h
+            if I(i, j) < th
+                bw(i, j) = 0;
+            else
+                bw(i, j) = 1;
             end
         end
     end
+
+ figure,imshow(bw); % Display the image in the specified axes
 end
-figure , imshow(bw)
-end
-
-
-
-

@@ -1,4 +1,4 @@
-function varargout = tryingGui(varargin)
+function varargout = Gui(varargin)
 % TRYINGGUI MATLAB code for tryingGui.fig
 %      TRYINGGUI, by itself, creates a new TRYINGGUI or raises the existing
 %      singleton*.
@@ -22,7 +22,7 @@ function varargout = tryingGui(varargin)
 
 % Edit the above text to modify the response to help tryingGui
 
-% Last Modified by GUIDE v2.5 10-Dec-2024 21:41:16
+% Last Modified by GUIDE v2.5 11-Dec-2024 10:25:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -72,13 +72,26 @@ function varargout = tryingGui_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-
-% --- Executes on button press in pushbutton15.
-function pushbutton15_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton15 (see GCBO)
+function brightness_vl_Callback(hObject, eventdata, handles)
+% hObject    handle to brightness_vl (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Hints: get(hObject,'String') returns contents of brightness_vl as text
+%        str2double(get(hObject,'String')) returns contents of brightness_vl as a double
+global bright_val
+bright_val=brightness_vl.get();
+bright_val=bright_val.str2double();
 
+% --- Executes on button press in add_brigt.
+function add_brigt_Callback(hObject, eventdata, handles)
+% hObject    handle to add_brigt (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global bright_val
+a=('cameraman.tif');
+b=brightness(a,'+',bright_val);
+axes(handles.axes4);
+imshow(b);
 
 % --- Executes on button press in pushbutton16.
 function pushbutton16_Callback(hObject, eventdata, handles)
@@ -100,20 +113,9 @@ function pushbutton18_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
-
-function edit2_Callback(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit2 as text
-%        str2double(get(hObject,'String')) returns contents of edit2 as a double
-
-
 % --- Executes during object creation, after setting all properties.
-function edit2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit2 (see GCBO)
+function brightness_vl_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to brightness_vl (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -124,27 +126,16 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+
+% --- Executes on button press in Blck_white.
+function Blck_white_Callback(hObject, eventdata, handles)
+% hObject    handle to Blck_white (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
-% --- Executes on button press in pushbutton9.
-function pushbutton9_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton9 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
-% --- Executes on button press in pushbutton10.
-function pushbutton10_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton10 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-
+a=imread('cameraman.tif');
+b=rgb2bw(a,50);
+axes(handles.axes4);
+b.imshow(b);
 % --- Executes on button press in pushbutton11.
 function pushbutton11_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton11 (see GCBO)
@@ -166,12 +157,35 @@ function pushbutton13_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton14.
-function pushbutton14_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton14 (see GCBO)
+% --- Executes on button press in import_img.
+function import_img_Callback(hObject, eventdata, handles)
+% hObject    handle to import_img (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global a
+a=imread('cameraman.tif')
+axes(handles.axes2);
+imshow(a);
 
+% --- Executes on button press in gray_img.
+function gray_img_Callback(hObject, eventdata, handles)
+% hObject    handle to gray_img (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b = graytobinary(a,90);
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in complement.
+function complement_Callback(hObject, ~, handles)
+% hObject    handle to complement (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+c=Inverse(a);
+axes(handles.axes4);
+imshow(c);
 
 % --- Executes on button press in pushbutton20.
 function pushbutton20_Callback(hObject, eventdata, handles)
