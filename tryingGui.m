@@ -153,7 +153,9 @@ function Blck_white_Callback(hObject, eventdata, handles)
 % hObject    handle to Blck_white (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-c=imread('trees.tif');
+c=imread('onion.png');
+axes(handles.axes2);
+imshow(c, 'Parent', handles.axes2); % Display the image
 b=rgb2bw(c,50);
 axes(handles.axes4);
 imshow(b, 'Parent', handles.axes4); % Display the image
@@ -201,6 +203,8 @@ function gray_img_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b = graytobinary(a,90);
 axes(handles.axes4);
 imshow(b);
@@ -211,6 +215,8 @@ function complement_Callback(hObject, ~, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 c=Inverse(a);
 axes(handles.axes4);
 imshow(c);
@@ -466,6 +472,8 @@ function Histogram_Equalization_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=Equalization(a);
 axes(handles.axes4);
 imshow(b);
@@ -479,6 +487,8 @@ function strectching_Callback(hObject, eventdata, handles)
 global a
 global nmin_val
 global nmax_val
+axes(handles.axes2);
+imshow(a);
 c=Stretch(a,nmin_val,nmax_val);
 axes(handles.axes4);
 imshow(c);
@@ -490,6 +500,8 @@ function Histogram_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=histogram(a)
 axes(handles.axes4);
 bar(b);
@@ -501,6 +513,8 @@ function pushbutton32_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=InvLog(a);
 axes(handles.axes4);
 imshow(b);
@@ -512,6 +526,8 @@ function Log_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=LogImage(a);
 axes(handles.axes4);
 imshow(b);
@@ -524,6 +540,8 @@ function gamma_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global gm_val
 global a
+axes(handles.axes2);
+imshow(a);
 b=gammaCorrection(a,gm_val);
 axes(handles.axes4);
 imshow(b);
@@ -535,6 +553,8 @@ function Point_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=pointEdgeFilter(a);
 axes(handles.axes4);
 imshow(b);
@@ -546,6 +566,8 @@ function vertical_edg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=verticalEdgeFilter(a)
 axes(handles.axes4);
 imshow(b);
@@ -557,6 +579,8 @@ function Horizontal_edg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=horizontalEdgeFilter(a)
 axes(handles.axes4);
 imshow(b);
@@ -568,6 +592,8 @@ function left_dia_edg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=leftDiagEdge(a)
 axes(handles.axes4);
 imshow(b);
@@ -578,6 +604,8 @@ function rigt_dia_edg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=rightDiagEdge(a)
 axes(handles.axes4);
 imshow(b);
@@ -589,6 +617,8 @@ function point_sh_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=SharpeningFilter_V(a)
 axes(handles.axes4);
 imshow(b)
@@ -599,6 +629,8 @@ function vertical_sh_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=SharpeningFilter(a)
 axes(handles.axes4);
 imshow(b);
@@ -610,6 +642,8 @@ function right_dia_sh_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=SharpeningFilter_RD(a)
 axes(handles.axes4);
 imshow(b);
@@ -621,6 +655,8 @@ function lft_dia_sh_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=SharpeningFilter_LD(a)
 axes(handles.axes4);
 imshow(b);
@@ -632,6 +668,8 @@ function Horiz_sh_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=SharpeningFilter_H(a)
 axes(handles.axes4);
 imshow(b);
@@ -643,6 +681,8 @@ function gau_hpf_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=gaussian_hpf(a,20)
 axes(handles.axes4);
 imshow(b);
@@ -653,6 +693,8 @@ function ButterWorth_HPF_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=butterworth_hpf(a,20,1)
 axes(handles.axes4);
 imshow(b);
@@ -663,6 +705,8 @@ function Ideal_hpf_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=ideal_hpf(a,20)
 axes(handles.axes4);
 imshow(b);
@@ -673,6 +717,8 @@ function midpoint_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=midpoint_filter(a,3)
 axes(handles.axes4);
 imshow(b);
@@ -683,6 +729,8 @@ function avg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=averageFilter_weighted(a)
 axes(handles.axes4);
 imshow(b);
@@ -694,6 +742,8 @@ function max_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=nonlinearFilter(a,'max',3*3)
 axes(handles.axes4);
 imshow(b);
@@ -704,6 +754,8 @@ function min_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=nonlinearFilter(a,'min',3*3)
 axes(handles.axes4);
 imshow(b);
@@ -715,6 +767,8 @@ function mean_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=nonlinearFilter(a,'mean',3*3)
 axes(handles.axes4);
 imshow(b);
@@ -726,6 +780,8 @@ function median_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=gaussian_lpf(a,20)
 axes(handles.axes4);
 imshow(b);
@@ -737,6 +793,8 @@ function gau_lpf_Callback(hObject, ~, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=nonlinearFilter(a,'median',3*3)
 axes(handles.axes4);
 imshow(b);
@@ -747,6 +805,8 @@ function butr_lpf_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=butterworth_lpf(a,20,1)
 axes(handles.axes4);
 imshow(b);
@@ -757,6 +817,8 @@ function ideal_lpf_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=ideal_lpf(a,30)
 axes(handles.axes4);
 imshow(b);
@@ -821,6 +883,8 @@ function fourier_trans_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=FourierTransform(a);
 axes(handles.axes4);
 imshow(b);
@@ -831,6 +895,8 @@ function inv_fourier_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
+axes(handles.axes2);
+imshow(a);
 b=InverseFourierTransform(a);
 axes(handles.axes4);
 imshow(b);
@@ -841,7 +907,9 @@ function rgbtogray_Callback(hObject, eventdata, handles)
 % hObject    handle to rgbtogray (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-c=imread('trees.tif');
+c=imread('onion.png');
+axes(handles.axes2);
+imshow(c);
 b=rgbtogray(c);
 axes(handles.axes4);
 imshow(b);
