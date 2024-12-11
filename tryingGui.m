@@ -22,7 +22,7 @@ function varargout = Gui(varargin)
 
 % Edit the above text to modify the response to help tryingGui
 
-% Last Modified by GUIDE v2.5 11-Dec-2024 10:25:53
+% Last Modified by GUIDE v2.5 11-Dec-2024 15:21:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -79,8 +79,7 @@ function brightness_vl_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of brightness_vl as text
 %        str2double(get(hObject,'String')) returns contents of brightness_vl as a double
 global bright_val
-bright_val=brightness_vl.get();
-bright_val=bright_val.str2double();
+bright_val = str2double(get(hObject, 'String'));
 
 % --- Executes on button press in add_brigt.
 function add_brigt_Callback(hObject, eventdata, handles)
@@ -89,7 +88,7 @@ function add_brigt_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global bright_val
 a=('cameraman.tif');
-b=brightness(a,'+',bright_val);
+b=brightness(a,'+',30);
 axes(handles.axes4);
 imshow(b);
 
@@ -132,10 +131,11 @@ function Blck_white_Callback(hObject, eventdata, handles)
 % hObject    handle to Blck_white (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-a=imread('cameraman.tif');
-b=rgb2bw(a,50);
+c=imread('trees.tif');
+b=rgb2bw(c,50);
 axes(handles.axes4);
-b.imshow(b);
+imshow(b, 'Parent', handles.axes4); % Display the image
+
 % --- Executes on button press in pushbutton11.
 function pushbutton11_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton11 (see GCBO)
@@ -150,12 +150,18 @@ function pushbutton12_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton13.
-function pushbutton13_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton13 (see GCBO)
+% --- Executes on button press in exit.
+function exit_Callback(hObject, eventdata, handles)
+% hObject    handle to exit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+   choice = questdlg('Are you sure you want to exit?', ...
+                      'Exit Confirmation', ...
+                      'Yes', 'No', 'Yes');
+    if strcmp(choice, 'Yes')
+        % Close the GUI
+        close(handles.figure1); % Assuming 'figure1' is the tag of your main GUI figure
+    end
 
 % --- Executes on button press in import_img.
 function import_img_Callback(hObject, eventdata, handles)
@@ -352,18 +358,19 @@ end
 
 
 
-function edit4_Callback(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function n_min_Callback(hObject, eventdata, handles)
+% hObject    handle to n_min (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit4 as text
-%        str2double(get(hObject,'String')) returns contents of edit4 as a double
-
+% Hints: get(hObject,'String') returns contents of n_min as text
+%        str2double(get(hObject,'String')) returns contents of n_min as a double
+global nmin_val
+nmin_val = str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
-function edit4_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function n_min_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to n_min (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -375,18 +382,19 @@ end
 
 
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function n_max_Callback(hObject, eventdata, handles)
+% hObject    handle to n_max (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
-
+% Hints: get(hObject,'String') returns contents of n_max as text
+%        str2double(get(hObject,'String')) returns contents of n_max as a double
+global nmax_val
+nmax_val= str2double(get(hObject, 'String'));
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function n_max_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to n_max (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -405,18 +413,21 @@ function pushbutton27_Callback(hObject, eventdata, handles)
 
 
 
-function edit3_Callback(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function Gmma_val_Callback(hObject, eventdata, handles)
+% hObject    handle to Gmma_val (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit3 as text
-%        str2double(get(hObject,'String')) returns contents of edit3 as a double
+% Hints: get(hObject,'String') returns contents of Gmma_val as text
+%        str2double(get(hObject,'String')) returns contents of Gmma_val as a double
+global gm_val
+gm_val = str2double(get(hObject, 'String'));
+
 
 
 % --- Executes during object creation, after setting all properties.
-function edit3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function Gmma_val_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Gmma_val (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -425,3 +436,312 @@ function edit3_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in Histogram_Equalization.
+function Histogram_Equalization_Callback(hObject, eventdata, handles)
+% hObject    handle to Histogram_Equalization (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=Equalization(a);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in strectching.
+function strectching_Callback(hObject, eventdata, handles)
+% hObject    handle to strectching (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+global nmin_val
+global nmax_val
+c=Stretch(a,nmin_val,nmax_val);
+axes(handles.axes4);
+imshow(c);
+
+
+% --- Executes on button press in Histogram.
+function Histogram_Callback(hObject, eventdata, handles)
+% hObject    handle to Histogram (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=histogram(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in pushbutton32.
+function pushbutton32_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton32 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=InvLog(a);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in Log.
+function Log_Callback(hObject, eventdata, handles)
+% hObject    handle to Log (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=LogImage(a);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in gamma.
+function gamma_Callback(hObject, eventdata, handles)
+% hObject    handle to gamma (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global gm_val
+global a
+b=gammaCorrection(a,gm_val);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in Point.
+function Point_Callback(hObject, eventdata, handles)
+% hObject    handle to Point (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=pointEdgeFilter(a);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in vertical_edg.
+function vertical_edg_Callback(hObject, eventdata, handles)
+% hObject    handle to vertical_edg (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=verticalEdgeFilter(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in Horizontal_edg.
+function Horizontal_edg_Callback(hObject, eventdata, handles)
+% hObject    handle to Horizontal_edg (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=horizontalEdgeFilter(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in left_dia_edg.
+function left_dia_edg_Callback(hObject, eventdata, handles)
+% hObject    handle to left_dia_edg (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=leftDiagEdge(a)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in rigt_dia_edg.
+function rigt_dia_edg_Callback(hObject, eventdata, handles)
+% hObject    handle to rigt_dia_edg (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=rightDiagEdge(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in point_sh.
+function point_sh_Callback(hObject, eventdata, handles)
+% hObject    handle to point_sh (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=SharpeningFilter_V(a)
+axes(handles.axes4);
+imshow(b)
+
+% --- Executes on button press in vertical_sh.
+function vertical_sh_Callback(hObject, eventdata, handles)
+% hObject    handle to vertical_sh (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=SharpeningFilter(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in right_dia_sh.
+function right_dia_sh_Callback(hObject, eventdata, handles)
+% hObject    handle to right_dia_sh (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=SharpeningFilter_RD(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in lft_dia_sh.
+function lft_dia_sh_Callback(hObject, eventdata, handles)
+% hObject    handle to lft_dia_sh (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=SharpeningFilter_LD(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in Horiz_sh.
+function Horiz_sh_Callback(hObject, eventdata, handles)
+% hObject    handle to Horiz_sh (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=SharpeningFilter_H(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in gau_hpf.
+function gau_hpf_Callback(hObject, eventdata, handles)
+% hObject    handle to gau_hpf (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=gaussian_hpf(a,20)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in ButterWorth_HPF.
+function ButterWorth_HPF_Callback(hObject, eventdata, handles)
+% hObject    handle to ButterWorth_HPF (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=butterworth_hpf(a,20,1)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in Ideal_hpf.
+function Ideal_hpf_Callback(hObject, eventdata, handles)
+% hObject    handle to Ideal_hpf (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=ideal_hpf(a,20)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in midpoint.
+function midpoint_Callback(hObject, eventdata, handles)
+% hObject    handle to midpoint (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=midpoint_filter(a,3)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in avg.
+function avg_Callback(hObject, eventdata, handles)
+% hObject    handle to avg (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=averageFilter_box(a)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in max.
+function max_Callback(hObject, eventdata, handles)
+% hObject    handle to max (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=nonlinearFilter(a,'max',3*3)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in min.
+function min_Callback(hObject, eventdata, handles)
+% hObject    handle to min (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=nonlinearFilter(a,'min',3*3)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in mean.
+function mean_Callback(hObject, eventdata, handles)
+% hObject    handle to mean (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=nonlinearFilter(a,'mean',3*3)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in median.
+function median_Callback(hObject, eventdata, handles)
+% hObject    handle to median (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=gaussian_lpf(a,20)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in gau_lpf.
+function gau_lpf_Callback(hObject, eventdata, handles)
+% hObject    handle to gau_lpf (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=nonlinearFilter(a,'median',3*3)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in butr_lpf.
+function butr_lpf_Callback(hObject, eventdata, handles)
+% hObject    handle to butr_lpf (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=butterworth_lpf(a,20,1)
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in ideal_lpf.
+function ideal_lpf_Callback(hObject, eventdata, handles)
+% hObject    handle to ideal_lpf (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=ideal_lpf(a,30)
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in midpoint.
+function pushbutton57_Callback(hObject, eventdata, handles)
+% hObject    handle to midpoint (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
