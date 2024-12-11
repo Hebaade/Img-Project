@@ -22,7 +22,7 @@ function varargout = Gui(varargin)
 
 % Edit the above text to modify the response to help tryingGui
 
-% Last Modified by GUIDE v2.5 11-Dec-2024 16:58:37
+% Last Modified by GUIDE v2.5 11-Dec-2024 22:20:32
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -683,7 +683,7 @@ function avg_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global a
-b=averageFilter_box(a)
+b=averageFilter_weighted(a)
 axes(handles.axes4);
 imshow(b);
 
@@ -732,7 +732,7 @@ imshow(b);
 
 
 % --- Executes on button press in gau_lpf.
-function gau_lpf_Callback(hObject, eventdata, handles)
+function gau_lpf_Callback(hObject, ~, handles)
 % hObject    handle to gau_lpf (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -813,3 +813,46 @@ function edit12_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in fourier_trans.
+function fourier_trans_Callback(hObject, eventdata, handles)
+% hObject    handle to fourier_trans (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=FourierTransform(a);
+axes(handles.axes4);
+imshow(b);
+
+% --- Executes on button press in inv_fourier.
+function inv_fourier_Callback(hObject, eventdata, handles)
+% hObject    handle to inv_fourier (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=InverseFourierTransform(a);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in rgbtogray.
+function rgbtogray_Callback(hObject, eventdata, handles)
+% hObject    handle to rgbtogray (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+c=imread('trees.tif');
+b=rgbtogray(c);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in Convolution.
+function Convolution_Callback(hObject, eventdata, handles)
+% hObject    handle to Convolution (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=Convolution(a,[0.2, 0.5, 0.2]);
+axes(handles.axes4);
+imshow(b);

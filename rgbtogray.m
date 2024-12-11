@@ -1,11 +1,17 @@
-function [ gray ] = rgbtogray( I )
-[ w h l ] = size(I);
-
-for i=1:w
-    for j=1:h
-        gray(i,j)= (I(i,j,1)*0.8+I(i,j,2)*0.1+I(i,j,3)*0.1) / 3;
+function gray = rgbtogray(I)
+    % Custom function to convert RGB image to grayscale
+    % I: Input image (can be RGB or grayscale)
+    % gray: Output grayscale image
+    
+    % Check if the input image is RGB (3 channels)
+    if size(I, 3) == 3
+        % Combine the RGB channels into grayscale
+        gray = (I(:, :, 1) * 0.3 + I(:, :, 2) * 0.59 + I(:, :, 3) * 0.11);
+    elseif size(I, 3) == 1
+        % Already grayscale, just return the input
+        gray = I;
+    else
+        error('Input image must be either RGB (3 channels) or grayscale (1 channel).');
     end
+    figure,imshow(gray);
 end
-figure,imshow(gray);
-end
-
