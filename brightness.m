@@ -1,29 +1,38 @@
-function [ img ] = brightness(I , op ,num)
-[w h] = size(I);
-for i=1:w
-    for j=1:h
-        if (op == '+');
-            pixel = I(i,j)+ num;
-        else if (op == '-');
-                pixel = I(i,j)- num;
-        else if (op == '*');
-                pixel = I(i,j)* num;
-        else if (op == '/');
-                pixel = I(i,j)/ num; 
+function A1 = brightness(A, val, op)
+     
+    [w, h] = size(A);
+    
+    A1 = zeros(w, h, 'like', A);
+
+    for i = 1:w
+        for j = 1:h
+            switch op
+                case '+'
+                    A1(i,j) = A(i,j) + val;
+                case '-'
+                    A1(i,j) = A(i,j) - val;
+                case '*'
+                    A1(i,j) = A(i,j) * val;
+                case '/'
+                    if val ~= 0 
+                        A1(i,j) = A(i,j) / val;
+                    else
+                        A1(i,j) = A(i,j); 
+                    end
+                otherwise
+                    error('Invalid operation. Use +, -, *, or /.');
             end
-            end
-            end
-        end
-        if (pixel>255);
-            img(i,j) = 255;
-        else if (pixel < 0)
-                img(i,j) = 0;
-            else 
-                img(i,j) = pixel;
+
+            if A1(i,j) < 0
+                A1(i,j) = 0;
+            elseif A1(i,j) > 255
+                A1(i,j) = 255;
             end
         end
     end
-end
 
-figure , imshow(img);
+   
+    
+    A1 = cast(A1, 'like', A);  
+    figure,imshow(A1);
 end

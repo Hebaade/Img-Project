@@ -22,7 +22,7 @@ function varargout = Gui(varargin)
 
 % Edit the above text to modify the response to help tryingGui
 
-% Last Modified by GUIDE v2.5 11-Dec-2024 15:21:53
+% Last Modified by GUIDE v2.5 11-Dec-2024 16:58:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -78,39 +78,61 @@ function brightness_vl_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % Hints: get(hObject,'String') returns contents of brightness_vl as text
 %        str2double(get(hObject,'String')) returns contents of brightness_vl as a double
-global bright_val
-bright_val = str2double(get(hObject, 'String'));
+
 
 % --- Executes on button press in add_brigt.
 function add_brigt_Callback(hObject, eventdata, handles)
 % hObject    handle to add_brigt (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global bright_val
-a=('cameraman.tif');
-b=brightness(a,'+',30);
+global a
+a=imread('cameraman.tif');
+val=str2double(get(handles.edit11,'string'));
+op=get(handles.edit12,'string');
+r=brightness(a,val,op);
 axes(handles.axes4);
-imshow(b);
+imshow(r);
 
-% --- Executes on button press in pushbutton16.
-function pushbutton16_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton16 (see GCBO)
+% --- Executes on button press in sub.
+function sub_Callback(hObject, eventdata, handles)
+% hObject    handle to sub (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global a
+a=imread('cameraman.tif');
+val=str2double(get(handles.edit11,'string'));
+op=get(handles.edit12,'string');
+r=brightness(a,val,op);
+axes(handles.axes4);
+imshow(r);
 
 
-% --- Executes on button press in pushbutton17.
-function pushbutton17_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton17 (see GCBO)
+% --- Executes on button press in Divide.
+function Divide_Callback(hObject, eventdata, handles)
+% hObject    handle to Divide (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global a
+a=imread('cameraman.tif');
+val=str2double(get(handles.edit11,'string'));
+op=get(handles.edit12,'string');
+r=brightness(a,val,op);
+axes(handles.axes4);
+imshow(r);
 
 
-% --- Executes on button press in pushbutton18.
-function pushbutton18_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton18 (see GCBO)
+% --- Executes on button press in mul.
+function mul_Callback(hObject, eventdata, handles)
+% hObject    handle to mul (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global a
+a=imread('cameraman.tif');
+val=str2double(get(handles.edit11,'string'));
+op=get(handles.edit12,'string');
+r=brightness(a,val,op);
+axes(handles.axes4);
+imshow(r);
 
 % --- Executes during object creation, after setting all properties.
 function brightness_vl_CreateFcn(hObject, eventdata, handles)
@@ -470,7 +492,7 @@ function Histogram_Callback(hObject, eventdata, handles)
 global a
 b=histogram(a)
 axes(handles.axes4);
-imshow(b);
+bar(b);
 
 
 % --- Executes on button press in pushbutton32.
@@ -745,3 +767,49 @@ function pushbutton57_Callback(hObject, eventdata, handles)
 % hObject    handle to midpoint (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function edit11_Callback(hObject, eventdata, handles)
+% hObject    handle to edit11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit11 as text
+%        str2double(get(hObject,'String')) returns contents of edit11 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit11_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit12_Callback(hObject, eventdata, handles)
+% hObject    handle to edit12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit12 as text
+%        str2double(get(hObject,'String')) returns contents of edit12 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit12_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
