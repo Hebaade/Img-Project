@@ -11,4 +11,3 @@ for i=1:w
         end
     end
 end
-figure , imshow(bw);

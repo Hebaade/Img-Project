@@ -28,5 +28,5 @@ function [img] = nonlinearFilter(I, filter_name, mask_size)
         end
     end
     img = uint8(img);
-    figure, imshow(img), title([filter_name,' filter']);
+  
 end

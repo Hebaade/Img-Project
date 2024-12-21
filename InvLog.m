@@ -3,10 +3,8 @@ function [img] = InvLog(I)
 I = im2double(I);
 for i=1:w
     for j=1:h
-        img(i,j) = exp(I(i,j)) - 1 ;
+        img(i,j) = log(1 + I(i,j));
     end
 end
-figure , imshow(img);
-end
 
-    
+end

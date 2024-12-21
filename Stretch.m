@@ -10,8 +10,8 @@ function [I1] = Stretch(I, new_min, new_max)
         end
     end
     I1 = uint8(I1); 
-    figure, imshow(I1);
-    title('Stretched Image');
+ 
+   
     
 % Optional: Display histograms 
 %      histogram(uint8(I)); % Original histogram

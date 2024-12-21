@@ -34,5 +34,5 @@ function A1 = brightness(A, val, op)
    
     
     A1 = cast(A1, 'like', A);  
-    figure,imshow(A1);
+   
 end

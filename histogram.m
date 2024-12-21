@@ -15,8 +15,7 @@ function [I1] = histogram(I, plotFlag)
     end
     % Plot the histogram if the flag is true
     if plotFlag == true;
-    figure,bar(I1);
-    title('Histogram');
+   
     end
 end
 

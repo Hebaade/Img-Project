@@ -13,5 +13,5 @@ function gray = rgbtogray(I)
     else
         error('Input image must be either RGB (3 channels) or grayscale (1 channel).');
     end
-    figure,imshow(gray);
+  
 end

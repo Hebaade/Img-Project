@@ -6,7 +6,7 @@ for i=1:w
         img(i,j) = 1 - I(i,j) ;
     end
 end
-figure , imshow(img);
+
 end
 
     

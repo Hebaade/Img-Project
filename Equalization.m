@@ -17,9 +17,9 @@ function [I1] = Equalization(I)
         end
     end    
     I1 = uint8(I1);     
-    figure, imshow(I1);
-    histogram(I1);
-    title('Equalized Histogram');
+  
+ 
+   
 end
            
        

@@ -12,5 +12,5 @@ function bw = graytobinary(I,th)
         end
     end
 
- figure,imshow(bw); % Display the image in the specified axes
+
 end

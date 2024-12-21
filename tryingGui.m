@@ -1,4 +1,4 @@
-function varargout = Gui(varargin)
+function varargout = tryingGui(varargin)
 % TRYINGGUI MATLAB code for tryingGui.fig
 %      TRYINGGUI, by itself, creates a new TRYINGGUI or raises the existing
 %      singleton*.
@@ -22,7 +22,7 @@ function varargout = Gui(varargin)
 
 % Edit the above text to modify the response to help tryingGui
 
-% Last Modified by GUIDE v2.5 11-Dec-2024 22:20:32
+% Last Modified by GUIDE v2.5 19-Dec-2024 12:58:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -922,5 +922,16 @@ function Convolution_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global a
 b=Convolution(a,[0.2, 0.5, 0.2]);
+axes(handles.axes4);
+imshow(b);
+
+
+% --- Executes on button press in conv.
+function conv_Callback(hObject, eventdata, handles)
+% hObject    handle to conv (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global a
+b=Filter(1/9 * [1 1 1; 1 1 1; 1 1 1],a);
 axes(handles.axes4);
 imshow(b);
